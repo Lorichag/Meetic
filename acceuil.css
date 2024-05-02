@@ -1,0 +1,36 @@
+#titre1 {
+    font-size: 5em; /* Taille de police */
+    text-align: center; /* Centrer le texte horizontalement */
+    color: #fff; /* Couleur du texte */
+}
+
+#titre2 {
+    font-size: 3em; /* Taille de police */
+    text-align: center; /* Centrer le texte horizontalement */
+    color: #fff; /* Couleur du texte */
+}
+
+#slogan {
+    font-size: 2em; /* Taille de police */
+    text-align: center; /* Centrer le texte horizontalement */
+    color: #fff; /* Couleur du texte */
+}
+
+#connexion{
+	margin-right: 20px;
+	font-size: 1em; /* Taille de police */
+	text-align: right; /* Centrer le texte horizontalement */
+	color: #000; /* Couleur du texte */
+}
+
+body {
+    height: 100vh; /* Définir la hauteur à 100% de la fenêtre */
+    /* Ajoutez l'image de fond et spécifiez son chemin */
+    background-image: url('https://img.freepik.com/photos-premium/chat-chien-dormant-oreiller-forme-coeur-rouge-icones-coeur-volant-autour-ia-generative_669798-1891.jpg');
+    /* Pour spécifier la taille de l'image de fond */
+    background-size: cover; /* Ou contain, ou spécifiez une taille spécifique */
+    /* Pour centrer l'image de fond */
+    background-position: center;
+    /* Pour répéter l'image de fond si elle est plus petite que l'élément */
+    background-repeat: no-repeat; /* Ou repeat, repeat-x, repeat-y */
+}
