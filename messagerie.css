@@ -1,0 +1,24 @@
+#addconv{
+	background-color: red;
+	width:15%;
+	height:200px;
+	display: inline-block;
+	margin-left:2%;
+}
+
+#conv{
+	background-color: blue ;
+	width:75%;
+	height:200px;
+	display: inline-block;
+	margin-right:5%;
+}
+
+.newconv{
+	background-color:green;
+	width:100%;
+	height:50px
+}
+
+
+
