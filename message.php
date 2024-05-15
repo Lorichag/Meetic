@@ -13,22 +13,37 @@
 
 <a href="message.php"><img id="p3" src="image/message.png"></a>
 
-
-
 <a href="profil.php"><img id="p4" src="image/profil.png"></a>
  
 <div><img id="p5" src="image/parametre.png"></div>
 </div>
-
-<div class="profil">
-<table>
-
-
-</table>
-
-
+<div class="chat">
+<body>
+<select name="app" multiple>
+    <option>
+        <div id ="i1"><img src="image/Crabe.jpg"></div>
+        <p>Crabe</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+    <option >
+        <p>nom profil</p>
+    </option>
+</select> 
 </div>
-
 
 <style type="text/css">
 
@@ -65,6 +80,25 @@ position: absolute;
     border: solid black 2px;
     height: 100vh;
     margin-left: 5%;
+}
+
+.chat {
+margin-left:100px;
+}
+
+.chat select {
+width:300px;
+height:100vh;
+}
+.chat option {
+width:300px;
+height:150px;
+}
+
+.chat img {
+    width:100px;
+    height:100px;
+    border-radius:100%;
 }
 
 </style>
