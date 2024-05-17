@@ -2,7 +2,7 @@
 
 /*
 session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=espace membres;charset=utf8;','root','');
+$bdd= new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=espace membres;charset=utf8;','root','');
 if(isset($_POST["envoi"])){
     $age = date_diff(date_create($_POST['age']), date_create('now'))->y;
     $pseudo=htmlspecialchars($_POST['pseudo']);
@@ -38,19 +38,21 @@ if(isset($_POST["envoi"])){
 
 <style type="text/css">
 
+@font-face {
+  font-family: "Ghibo";
+  src:
+    url("Ghibo Talk.otf") format("opentype");
+}
+
 body{
-  font-family: muli-regular;
-  font-size: 14px;
-  margin: 0;
-  color: #999;
+    margin: 0;
+    padding: 0;
 }
 
  html {
- 	background-image: url('https://img.freepik.com/vecteurs-premium/fond-couleur-degrade-pastel-abstrait-style-multicolore-lisse-flou-blanc_120819-616.jpg');
- 	height:100vh;
- 	background-repeat:no-repeat;
-  	background-position: center;
-  	background-size: cover;
+  background: radial-gradient(circle, rgba(34,193,195,1) 20%, rgba(253,187,45,1) 90%);
+  font-family: Ghibo;
+  font-size:20px;
 }
 
 .Formulaire{
@@ -75,27 +77,30 @@ form {
   z-index: 9;
   padding: 77px 61px 66px;
   background: #fff;
+  border-radius:50px;
+  border:solid black 2px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
 }
 
 h3 {
   text-transform: uppercase;
-  font-size: 25px;
-  font-family: muli-semibold;
+  font-size: 50px;
+  font-family: Ghibo;
   color: #333;
   letter-spacing: 3px;
   text-align: center;
-  margin-bottom: 33px;
 }
 
 .Case {
   position: relative;
   margin-bottom: 21px;
+  border-radius: 50px;
+  border:solid grey 1px;
 }
 
 .Case span {
   position: absolute;
-  left: 0;
+  left: 5%;
   top: 50%;
   transform: translateY(-50%);
   font-size: 15px;
@@ -114,7 +119,6 @@ h3 {
 
 .Custom {
   border: none;
-  border-bottom: 1px solid #e6e6e6;
   display: block;
   width: 100%;
   height: 38px;
@@ -164,7 +168,7 @@ h3 {
   top:-90px;
   left: -120px;
   z-index: 99;
-  transform:rotate(-10deg);
+  transform:rotate(-30deg);
 }
 
 </style>
