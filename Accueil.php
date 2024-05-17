@@ -1,4 +1,33 @@
+<?php 
+/*
+session_start();
+$bdd= new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=espace membres;charset=utf8;','root','');
+if(isset($_POST["envoi"])){
+            $pseudo=htmlspecialchars($_POST['pseudo']);
+            $mdp=sha1($_POST['password']);
+            $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
+            $recupUser->execute(array($pseudo,$mdp));
+            if($recupUser->rowCount()>0){
+                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['mdp'] = $mdp;
+                $_SESSION['id'] = $recupUser->fetch()['id'];
+                header('Location: connecting.php');
+            }
+            else{
+                echo 'y a une erreur dans le mot de passe ou l"utilisateur';
+            }
+}
+*/
+?>
+
+
 <style>
+
+@font-face {
+  font-family: "Ghibo";
+  src:
+    url("Ghibo Talk.otf") format("opentype");
+}
 
 body{
     margin: 0;
@@ -111,6 +140,8 @@ body{
 
 .Texte {
     display: flex;
+    position:fixed;
+    z-index:0 ;
     flex-direction: column;
     justify-content: center; /* Centre verticalement */
     align-items: center; /* Centre horizontalement */
@@ -130,7 +161,7 @@ body{
 #formco {
     position: fixed;
     top: 30px;
-    right: 10px;
+    right: 20px;
     padding: 15px 40px;
     background-color: #fff;
     border: 2px solid #666;
@@ -141,10 +172,128 @@ body{
     cursor: pointer;
 }
 
-@font-face {
-  font-family: "Ghibo";
-  src:
-    url("Ghibo Talk.otf") format("opentype");
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+.Formulaire{
+  	min-height: 100vh;
+  	align-items: center;
+    flex-direction: column;
+  	justify-content: center;
+    position:fixed;
+    z-index: -5;
+    display: flex;
+    margin:auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.Interieur{
+  position: relative;
+  width: 400px;
+}
+
+form {
+  width: 100%;
+  position: relative;
+  z-index: 9;
+  border-radius:50px;
+  border:solid black 2px;
+  padding: 20px 61px 66px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+
+h3 {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-family: Ghibo;
+  color: #333;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.Case {
+  position: relative;
+  margin-bottom: 21px;
+  border-radius: 50px;
+  border:solid black 1px;
+}
+
+.Case span {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: #333;
+}
+
+.lnr {
+  font-family: linearicons-free;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+
+.Custom {
+  border: none;
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: 0 0;
+  padding: 3px 42px 0;
+  color: #666;
+  font-family: muli-semibold;
+  font-size: 16px;
+}
+
+.button {
+  border: none;
+  width: 100%;
+  height: 49px;
+  margin-top: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #9cf;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: muli-semibold;
+  font-size: 15px;
+  letter-spacing: 2px;
+  transition: all .5s;
+  position: relative;
+  overflow: hidden;
+}
+
+.Fox {
+  position: absolute;
+  top:-80px;
+  left: -100px;
+  width: 50%;
+  z-index: 99;
+  transform:rotate(-20deg);
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right:30px;
+  z-index: 99;
+}
+
+.inscrip{
+    font-family:muli-semibold;
+    font-size:15px;
+    vertical-align:middle;
 }
 
 </style>
@@ -157,6 +306,7 @@ body{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AniMate</title>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -178,7 +328,6 @@ body{
     </div>
 
     <div class="Texte">
-        <button id="formco">Connexion</button>
         <h2>
             Look-seek
         </h2>
@@ -186,7 +335,60 @@ body{
             Find
         </h1>
     </div>
+
+    <div class="Connect">
+        <button id="formco">Connexion</button>
+            <div id="form" style="display:none;">
+        	<div class="Formulaire">
+		    <div class="Interieur">
+                <img class="Fox" src="logo.png">
+                <span id='close' class="close">X</span>
+                </span>
+                <form method="POST" action="" align="center">
+            	    <h3>Connexion</h3>
+                
+                    <div class="Case">
+	    			    <span class="lnr lnr-user">
+	    			    </span>
+                        <input class="Custom" type="text" name="pseudo"  autocomplete="off"  placeholder="Pseudo" required>
+                    </div>
+        
+                    <div class="Case">
+	    			    <span class="lnr lnr-user">
+	    			    </span>
+                	    <input class="Custom" type="password" name="password" autocomplete="off" placeholder="Mot de passe" required>
+                    </div>
+                
+                    <a href="signup.php" class="inscrip">Crée un compte</a>
+                    <input type="submit" class="button" value="Connexion" name="envoi">
+                </form>
+            </div>
+            </div>
+            </div>
+    </div>
+
 </div>
 
 </body>
 </html>
+
+
+<script>
+            var opco = document.getElementById("form");
+            var closeform = document.getElementById("close");
+            var formco = document.getElementById("formco");
+            
+            formco.onclick= function(){
+                opco.style.display="flex";
+            }
+
+            closeform.onclick= function(){
+                opco.style.display="none";
+            }
+
+            window.onclick = function(event){
+                if(event.target == opco){
+                    opco.style.display="none";
+                }
+            }
+        </script>
