@@ -272,6 +272,49 @@
   closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
   });
+
+
+
+    <div class="Messagerie">
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p>Mathis</p>
+       </div>
+     </button>
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p>Mathis</p>
+       </div>
+     </button>
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p>Mathis</p>
+       </div>
+     </button>
+  </div>
+
+
+      .Messagerie{
+  position:fixed;
+  width:300px;
+  height:100%;
+  margin-left:78px;
+  text-align:center;
+  background:red;
+}
+
+.bouton{
+  background:blue;
+  width:100%;
+}
+
+.case{
+  display:flex;
+  
+}
   searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
     sidebar.classList.toggle("open");
   });
