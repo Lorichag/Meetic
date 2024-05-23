@@ -50,7 +50,7 @@
      </li>
      <li class="profile">
          <div class="profile-details">
-           <img src="profile.jpg" alt="profileImg">
+           <img src="profile.jpg">
            <div class="name_job">
              <div class="name">Soup</div>
            </div>
@@ -58,6 +58,28 @@
          <i class='bx bx-log-out' id="log_out" ></i>
      </li>
     </ul>
+  </div>
+  
+  
+   <div class="Messagerie">
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p class="ut">Mathis</p>
+       </div>
+     </button>
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p class="ut">Mathis</p>
+       </div>
+     </button>
+     <button class="bouton">
+       <div class="case">
+         <img src="logo.png" class="icon1">
+         <p class="ut">Mathis</p>
+       </div>
+     </button>
   </div>
 
 
@@ -75,7 +97,7 @@
   top: 0;
   height: 100%;
   width: 78px;
-  background: radial-gradient(circle, rgba(34,193,195,1) 20%, rgba(253,187,45,1) 90%);;
+  background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90%);;
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -139,9 +161,9 @@
 
 .sidebar input{
   font-size: 15px;
-  color: black;
+  color: white;
   font-weight: 400;
-  height: 50px;
+  height: 49px;
   width: 50px;
   border:none;
   border-radius: 12px;
@@ -185,16 +207,13 @@
 .sidebar li a .links_name{
   color: #fff;
   font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
+  font-weight: 600;
   opacity: 0;
-  pointer-events: none;
   transition: 0.4s;
 }
 
 .sidebar.open li a .links_name{
   opacity: 1;
-  pointer-events: auto;
 }
 
 .sidebar li a:hover .links_name,
@@ -262,60 +281,44 @@
   background: none;
 }
 
-
-</style>
-
-<script>
-  let sidebar = document.querySelector(".sidebar");
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-  });
-
-
-
-    <div class="Messagerie">
-     <button class="bouton">
-       <div class="case">
-         <img src="logo.png" class="icon1">
-         <p>Mathis</p>
-       </div>
-     </button>
-     <button class="bouton">
-       <div class="case">
-         <img src="logo.png" class="icon1">
-         <p>Mathis</p>
-       </div>
-     </button>
-     <button class="bouton">
-       <div class="case">
-         <img src="logo.png" class="icon1">
-         <p>Mathis</p>
-       </div>
-     </button>
-  </div>
-
-
-      .Messagerie{
+  .Messagerie{
   position:fixed;
   width:300px;
   height:100%;
   margin-left:78px;
   text-align:center;
-  background:red;
+  border: solid black;
 }
 
 .bouton{
-  background:blue;
   width:100%;
+  height:50px;
+}
+
+.icon1{
+  margin-left:10px;
+}
+
+.ut{
+  margin-left:50px;
+  margin-top:5px;
 }
 
 .case{
   display:flex;
   
 }
-  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+
+
+ let sidebar = document.querySelector(".sidebar");
+let Texte=document.querySelector('.Texte');
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+  closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
+    Texte.classList.toggle("open");
   });
-  </script>
+  searchBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    Texte.classList.toggle("open");
+  });
