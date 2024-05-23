@@ -1,6 +1,10 @@
+
+
+
+
 <?php 
 session_start();
-$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'lancericha', 'neingee8kialohB');
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 if(!$_SESSION['pseudo']){
     header('Location: login.php');
 
@@ -28,13 +32,13 @@ else{
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Messagerie</title>
-</head>
 
-<body>
+
+<div class="message1">
 <select name="app" multiple onchange="redirectMessagerie(this)">
     <?php 
         $recupUser = $bdd->query('SELECT * FROM users');
@@ -49,8 +53,11 @@ else{
         }
     ?>
 </select>
+</div>
 
-    <div>
+
+
+    <div class="message2">
         <section id="message">
             <?php 
                 $recupMessage = $bdd->prepare('SELECT * FROM messages WHERE id_au = ? and id_des=? OR id_au = ? and id_des=?');
@@ -61,7 +68,12 @@ else{
                     <?php
                 }
             ?>
+</div>
 
+
+
+
+<div class="message3">
         </section>
         <form method="POST" action="">
             <?php
@@ -73,8 +85,7 @@ else{
             }
             ?>
         </form>
-    <div>
-
+</div>
 <script>
     function redirectMessagerie(select) {
         var selectedUserId = select.value;
@@ -82,7 +93,12 @@ else{
             window.location.href = "messagerie.php?id=" + selectedUserId;
         }
     }
+
 </script>
+
+
+
+
 
 </body>
 </html>
