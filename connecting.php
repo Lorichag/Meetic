@@ -101,8 +101,11 @@ echo $_SESSION["pseudo"];
      </li>
     </ul>
   </div>
-  
-  
+  <a id="abo" href="page-abo.php">Abonnement</a>
+
+
+
+ 
  
 
 <style>
@@ -302,7 +305,17 @@ echo $_SESSION["pseudo"];
   width: 50px;
   background: none;
 }
+#abo {
+background: skyblue;
+border-radius:10px;
+padding: 10px;
+text-decoration: none;
+color: black ;
+ top:10px;   
+ right:10px; 
+position:fixed;
 
+}
  
 </style>
 <script>
