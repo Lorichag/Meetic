@@ -1,8 +1,8 @@
 <?php 
 
-/*
+
 session_start();
-$bdd= new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=espace membres;charset=utf8;','root','');
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 if(isset($_POST["envoi"])){
     $age = date_diff(date_create($_POST['age']), date_create('now'))->y;
     $pseudo=htmlspecialchars($_POST['pseudo']);
@@ -13,8 +13,10 @@ if(isset($_POST["envoi"])){
             $sexe=htmlspecialchars($_POST['sexe']);
             $espece=htmlspecialchars($_POST['espece']);
             $race=htmlspecialchars($_POST['race']);
-            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race) VALUES(?, ?, ?, ?, ?, ?)');
-            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race));
+            $abo=0;
+            $fin_abo='vide';
+            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
+            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo));
 
             $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
             $recupUser->execute(array($pseudo,$mdp));
@@ -27,7 +29,7 @@ if(isset($_POST["envoi"])){
             }
     }
 }
-*/
+
 ?>
 
 
@@ -182,8 +184,8 @@ h3 {
 <body>
 <div class="Formulaire">
 <div class="Interieur">
-	<img class="Fox" src="logo.png">
-    <form method="POST" action="" align="center">
+	<img class="Fox" src="image/logo.png">
+    <form method="POST" action="signup.php" align="center">
     	<h3>S'inscrire</h3>
 	    	<div class="Case">
 	    		<span class="lnr lnr-user">
