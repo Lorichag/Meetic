@@ -5,3 +5,24 @@ Info:
 .Faire en sorte que signup fonctionne
 .Enlever le message d'erreur de connexion dans login*
 .Connecting à faire (Axel est sur le dossier)
+
+
+
+
+<div class="Liste">
+<?php 
+        $recupUser = $bdd->query('SELECT * FROM users');
+        while($user = $recupUser->fetch()){
+            if($user['id'] != $_SESSION['id']){
+    ?>
+    <button class="bouton" onclick="redirectMessagerie(<?= $user['id']; ?>)">
+        <div class="case">
+            <img src="omg.png" class="icon1">
+            <p class="ut"><?= $user['pseudo']; ?></p>
+        </div>
+        </button>
+    <?php
+            }
+        }
+    ?>
+</div>
