@@ -407,66 +407,99 @@ let Texte=document.querySelector('.Texte');
 
 
 
- .chat-container { 
-          margin:auto;
-          width:100%;
-            background-color: #fff; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-        } 
-  
-        .message-container { 
-            display: flex; 
-            flex-direction: column; 
-        } 
-  
-        .message { 
-            padding: 10px; 
-            margin: 10px; 
-            border-radius: 5px; 
-            max-width: 70%; 
-            word-wrap: break-word; 
-            display: flex; 
-            align-items: center; 
-        } 
-  
-        .sender-message { 
-            background-color: #e0e0e0; 
-            color: #000; 
-            align-self: flex-start; 
-        } 
-  
-        .receiver-message { 
-            background-color: #4CAF50; 
-            color: #fff; 
-            align-self: flex-end; 
-        } 
-  
-        .avatar { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 50%; 
-            margin-right: 10px; 
-        } 
-  
-        .message input { 
-            width: calc(100% - 20px); 
-            padding: 8px; 
-            margin: 10px; 
-            border: 1px solid #ddd; 
-            border-radius: 5px; 
-        } 
-  
-        .message button { 
-            padding: 8px; 
-            margin: 10px; 
-            background-color: #4CAF50; 
-            color: #fff; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-        } 
+.Messagerie{
+  display:flex
+    height:100hv;
+}
+
+.Liste {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    margin-left: 78px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    border: solid black;
+}
+
+.bouton {
+    width: 100%;
+    height: 50px;
+}
+
+.icon1 {
+    margin-left: 10px;
+}
+
+.case {
+    display: flex;
+}
+
+.chat-container {
+    margin-left: 378px; /* Ajustez pour prendre en compte la largeur et le margin-left de .Liste *
+    flex-grow: 1; /* Pour occuper tout l'espace restant */
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pour que la zone de messages prenne tout l'espace vertical */
+    overflow-y: auto; /* Pour permettre le défilement si le contenu dépasse */
+}
+
+.message {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+}
+
+.sender-message {
+    background-color: #e0e0e0;
+    color: #000;
+    align-self: flex-start;
+}
+
+.receiver-message {
+    background-color: #4CAF50;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.message button {
+    padding: 8px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 
 
