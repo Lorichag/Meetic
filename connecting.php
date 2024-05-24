@@ -21,6 +21,34 @@ if(isset($_POST['p'])){
 
 echo $_SESSION["pseudo"];
 
+ 
+session_start();
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
+if(!$_SESSION['pseudo']){
+    header('Location: login.php');
+
+}
+
+if(isset($_GET['id']) and !empty($_GET['id'])){
+    $getid = $_GET['id'];
+    $recupUser = $bdd->prepare('SELECT * FROM users WHERE id= ?');
+    $recupUser->execute(array($getid));
+    if($recupUser->rowCount()>0){
+        if(isset($_POST["envoyer"])){
+            $message=htmlspecialchars($_POST['message']);
+            $inseremessage = $bdd->prepare('INSERT INTO messages(message, id_des, id_au)VALUES(?,?,?)');
+            $inseremessage->execute(array($message, $getid, $_SESSION['id']));
+
+        }
+    }
+    else{
+        echo " aucun utilisateur";
+    }
+}
+else{
+    echo "Aucun id trouvé";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +58,7 @@ echo $_SESSION["pseudo"];
 </head>
 
 <body>
-<div>
-    <form method="post">
-        <input type="submit" name="d" value="Déconnexion">
-        <input type="submit" name="m" value="Messagerie">
-        <input type="submit" name="p" value="Profil">
-    </form>
-</div>
+
 </body>
 </html>
 
@@ -102,11 +124,41 @@ echo $_SESSION["pseudo"];
     </ul>
   </div>
   <a id="abo" href="page-abo.php">Abonnement</a>
+  <div class="titre">
+  <h1>Animate</h1>
+  <img src="image/logo.png">
+  </div>
+  
+  <div class="contenue">
+  
+  <div class="pro">
+<?php 
+        $recupUser = $bdd->query('SELECT * FROM users');
+        while($user = $recupUser->fetch()){
+            if($user['id'] != $_SESSION['id']){
+    ?>
+    <button class="bouton" onclick="redirectMessagerie(<?= $user['id']; ?>)">
+        <div class="case">
+            <img src="https://www.garnelio.de/media/image/26/df/9a/IMG-9764-2tdyWLzPLu4mlB.jpg" class="icon1">
+            <p class="ut"><?= $user['pseudo']; ?></p>
+        </div>
+        </button>
+    <?php
+            }
+        }
+    ?>
+</div>
+
+  <div class="pub">
+  
+  <img src="https://nuostore.com/wp-content/uploads/2023/11/IBANEZ-AE295WK-300x775.jpg">
+  </div>
+  </div>
 
 
 
- 
- 
+</html>
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -317,7 +369,83 @@ position:fixed;
 
 }
  
+
+form {
+margin-right:400px;
+
+}
+.titre h1, .titre img {
+    display: inline-block;
+    vertical-align: middle; /* Pour aligner verticalement le texte et l'image */
+}
+.titre h1{
+margin-left:700px;
+font-family:Ghibo;
+font-size:100px;
+}
+
+.titre img {
+width:60px;
+margin-left:10px;
+}
+
+
+@font-face {
+  font-family: "Ghibo";
+  src:
+    url("Ghibo Talk.otf") format("opentype");
+}
+
+.pro {
+margin-left:300px;
+width:1200px;
+height:80vh;
+border:solid black 2px;
+}
+
+.pro button {
+display:flex;
+width:600px;
+height:175px;
+
+}
+.pro img {
+margin-left:10px;
+margin-top:40px;
+display:flex;
+width:75px;
+height:75px;
+border-radius:100%;
+}
+.pro p{
+font-family:Ghibo;
+margin-left:20px;
+margin-top:8px;
+display:flex;
+font-size:25px;
+}
+
+.pub {
+margin-left:125px;
+width:300px;
+height:775px;
+border:solid black 2px;
+
+}
+.pub img{
+width:295px;
+height:770px;
+
+}
+.contenue {
+display:flex;
+}
+
+
 </style>
+
+
+
 <script>
  let sidebar = document.querySelector(".sidebar");
 let Texte=document.querySelector('.Texte');
