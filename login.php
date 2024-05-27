@@ -11,10 +11,12 @@ if(isset($_POST["envoi"])){
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['mdp'] = $mdp;
                 $_SESSION['id'] = $recupUser->fetch()['id'];
-                header('Location: connecting.php');
+                header('Location: connecting.php?id='.$_SESSION['id']);
             }
             else{
-                echo "Il y a une erreur dans le mot de passe ou l'utilisateur";
+            ?>
+                <script> window.alert('Identifiant ou MDP incorrect');</script>
+            <?php
             }
 }
 
@@ -148,19 +150,19 @@ body{
     position:fixed;
     z-index:0 ;
     flex-direction: column;
-    justify-content: center; /* Centre verticalement */
-    align-items: center; /* Centre horizontalement */
-    text-align: center; /* Centre le texte à l'intérieur du div */
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
     font-size: 60px;
     font-family: Ghibo;
     text-transform: uppercase;
-    max-width: 800px; /* Optionnel : pour limiter la largeur du texte */
-    margin: auto; /* Centrer le div dans l'espace disponible */
+    max-width: 800px;
+    margin: auto;
 }
 
 .Texte h1, .Texte h2 {
-    margin: 5px 0; /* Ajustez les marges pour rapprocher les textes */
-    padding: 0; /* Assurez-vous qu'il n'y a pas de padding supplémentaire */
+    margin: 5px 0;
+    padding: 0;
 }
 
 #formco {
