@@ -2,24 +2,47 @@
 
 <?php
 if (isset($_GET["offre"])) {
-    echo "Offre: " . htmlspecialchars($_GET["offre"]) . "<br>";
+    $offre = htmlspecialchars($_GET["offre"]);
+    echo "Offre: " . $offre . "<br>";
 } else {
     echo "Le paramètre 'offre' n'est pas défini dans l'URL.<br>";
+    $offre = null;
 }
+
 $bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 session_start();
-if(isset($_POST["fric"])){
-$abo = 1;
-$id = $_SESSION["id"];
-$fin_abo = 2004;
-$updateUser = $bdd->prepare('UPDATE users SET abo = ?, fin_abo = ? WHERE id = ?');
-$updateUser->execute(array($abo, $fin_abo, $id));
 
-
+if (isset($_POST["fric"])) {
+    $abo = 1;
+    $id = $_SESSION["id"];
+    switch ($offre) {
+        case 'foufou':
+            $fin_abo = 2678400; //offre pour 1 mois en seconde
+            break;
+        case 'sauvage':
+            $fin_abo = 8035200; //offre pour 3 mois en seconde
+            break;
+        case 'roi':
+            $fin_abo = 32140800; //offre pour 1 ans en seconde
+            break;
+        default:
+            $fin_abo = 0;
+            break;
+    }
+    if ($fin_abo > 0) {
+        $updateUser = $bdd->prepare('UPDATE users SET abo = ?, fin_abo = ? WHERE id = ?');
+        $updateUser->execute(array($abo, $fin_abo, $id));
+        echo "Mise à jour réussie.<br>";
+        ?>
+        <a href="connecting.php">Retour</a>
+        <?php
+        
+    } else {
+        echo "Offre invalide.<br>";
+    }
 }
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -35,6 +58,7 @@ $updateUser->execute(array($abo, $fin_abo, $id));
 <input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required>
 <input type="submit" value="Valider" name="fric">
 </form>
+
 </div>
 
 
@@ -60,10 +84,9 @@ width:100px;
 
 </style>
 
+<script>
 
-
-
-
+</script>
 
 
 </body>
