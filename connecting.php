@@ -16,7 +16,7 @@ if(isset($_POST['d'])){
 
 echo $_SESSION["pseudo"];
 
-$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
+$bdd = new PDO('mysql:host=localhost;dbname=projet;charset=utf8;', 'root');
 if(!$_SESSION['pseudo']){
     header('Location: login.php');
     exit();
@@ -37,6 +37,16 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
     }
 } else {
 }
+
+$recupUser = $bdd->query('SELECT * FROM users ORDER BY id DESC');
+if (isset($_GET['q']) AND !empty($_GET['q'])) {
+   $q = htmlspecialchars($_GET['q']);
+   $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo LIKE ? ORDER BY id DESC');
+   $recupUser->execute(array("%".$q."%"));
+} else {
+   $recupUser = $bdd->query('SELECT * FROM users ORDER BY id DESC');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +69,9 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
       <li>
         
           <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
+          <form method="GET">
+          <input type="search" name="q" placeholder="Recherche..." />
+          </form>
       </li>
       <li>
         <a href="connecting.php?id=<?= $_SESSION['id']; ?>">
@@ -117,8 +129,7 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
       </div>
 
       <div class="Tableau">
-    <?php 
-      $recupUser = $bdd->query('SELECT * FROM users');
+    <?php
       while($user = $recupUser->fetch()){
           if($user['id'] != $_SESSION['id']){
       ?>
