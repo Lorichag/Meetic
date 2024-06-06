@@ -45,7 +45,6 @@ body{
     margin: 0;
     padding: 0;
     background: radial-gradient(circle, rgba(34,193,195,1) 20%, rgba(253,187,45,1) 90%);
-    font-family: Ghibo;
     font-size:20px;
     display: flex;
     justify-content: center;
@@ -73,14 +72,15 @@ body{
     margin: 0;
     padding: 0;
     width: 0;
-    height: 40;
+    height: 50px;
     overflow: hidden;
     transition: 0.5s;
+    font-family: Ghibo;
 }
 
 .nav input:checked ~ .menu {
     width: 500px;
-    height: 25;
+    height: 25px;
 }
 
 .menu ul {
@@ -177,6 +177,7 @@ body{
     font-size: 25px;
     font-weight: 600;
     cursor: pointer;
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +192,7 @@ body{
     z-index: -5;
     display: flex;
     margin:auto;
+    
 }
 
 * {
@@ -211,8 +213,11 @@ form {
   padding: 20px 61px 66px;
   background: #fff;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  
 }
-
+h2 {
+    font-family: Ghibo;
+}
 h3 {
   text-transform: uppercase;
   font-size: 50px;
@@ -245,6 +250,7 @@ h3 {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  
 }
 
 
@@ -298,9 +304,98 @@ h3 {
 }
 
 .inscrip{
+
     font-family:muli-semibold;
     font-size:15px;
     vertical-align:middle;
+}
+
+
+.modal1 {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal1-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: modal1open 0.4s; 
+}
+
+@keyframes modal1open {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+.close-button1 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button1:hover,.close-button1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*                                                   */
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: modalopen 0.4s; 
+}
+
+@keyframes modalopen {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 </style>
@@ -317,6 +412,8 @@ h3 {
 <body>
 
 <div class="part1">
+
+
     <div class="nav">
         <input type="checkbox">
         <span></span>
@@ -324,19 +421,36 @@ h3 {
         <div class="menu">
             <ul>
                 <li><a href="login.php">Accueil</a></li>
-                <li><a href="#">A propos de nous</a></li>
-                <li><a href="contact.php">Nos contacts</a></li>
+                <li><a href="#" id="contact-link">A propos de nous</a></li>
+                <li><a href="#" id="contact-link1">Nos contacts</a></li>
             </ul>
         </div>
     </div>
+    <div id="modal1" class="modal1">
+        <div class="modal1-content">
+            <span class="close-button1">&times;</span>
+            <h2>Site créé par</h2>
+            <p>Loric Hagard, Mathis Lance-richardot, Alban Souppaya et Axel Guesdon</p>
+        </div>
+    </div>
+ 	<div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Qui somme nous ?</h2>
+            <p>Des étudiants de Cy Tech ayant pour projet de créer un site de rencontres !</p>
+            <p> Mais innovons un peu en créent quelque chose de different, un site de rencontres pour animaux !</p>
+            <p>Vous voilà les bienvenues sur Animate l'endroit où vous pourrez trouver l'amour de votre animal <3 </p>
+        </div>
+    </div>
+
 
     <div class="Texte">
-        <h2>
-            Look-seek
-        </h2>
         <h1>
-            Find
+            Animate
         </h1>
+        <h2>
+            Your Life
+        </h2>
     </div>
 
     <div class="Connect">
@@ -393,6 +507,46 @@ h3 {
                     opco.style.display="none";
                 }
             }
+            
+            document.addEventListener('DOMContentLoaded', (event) => {
+    const modal1 = document.getElementById('modal1');
+    const contactLink = document.getElementById('contact-link1');
+    const closeButton = document.getElementsByClassName('close-button1')[0];
+
+    contactLink.onclick = function() {
+        modal1.style.display = "block";
+    }
+
+    closeButton.onclick = function() {
+        modal1.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const modal = document.getElementById('modal');
+    const contactLink = document.getElementById('contact-link');
+    const closeButton = document.getElementsByClassName('close-button')[0];
+
+    contactLink.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
         </script>
 </body>
 </html>
