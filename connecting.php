@@ -68,7 +68,7 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
         </a>
       </li>
       <li>
-       <a href="profile.php?id=<?= $_SESSION['id']; ?>">
+       <a href="profil.php?id=<?= $_SESSION['id']; ?>">
          <i class='bx bx-user' ></i>
          <span class="links_name">Profile</span>
        </a>
