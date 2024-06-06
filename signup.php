@@ -15,8 +15,9 @@ if(isset($_POST["envoi"])){
             $race=htmlspecialchars($_POST['race']);
             $abo=0;
             $fin_abo='vide';
+            $profil='vide';
             $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo, profil) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
-            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo));
+            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo,$profil));
 
             $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
             $recupUser->execute(array($pseudo,$mdp));
@@ -191,14 +192,8 @@ h3 {
 	    		<span class="lnr lnr-user">
 	    		</span>
 	    		<input class="Custom" type="text" name="pseudo" placeholder="Pseudo"  autocomplete="off" required>
+	    	</div>
 	    		
-
-	    	</div>
-	    	<div class="Case">
-	    	<span class="lnr lnr-user">
-	    		</span>
-	    	<input class="Custom" type="text" name="mail" placeholder="Adresse-mail"  autocomplete="off" required>
-	    	</div>
 		<div class="Case">
 	    		<span class="lnr lnr-calendar-full"></span>
        			<input class="Custom" type="date" name="age" autocomplete="off" required>
