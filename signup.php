@@ -191,8 +191,14 @@ h3 {
 	    		<span class="lnr lnr-user">
 	    		</span>
 	    		<input class="Custom" type="text" name="pseudo" placeholder="Pseudo"  autocomplete="off" required>
-	    	</div>
 	    		
+
+	    	</div>
+	    	<div class="Case">
+	    	<span class="lnr lnr-user">
+	    		</span>
+	    	<input class="Custom" type="text" name="mail" placeholder="Adresse-mail"  autocomplete="off" required>
+	    	</div>
 		<div class="Case">
 	    		<span class="lnr lnr-calendar-full"></span>
        			<input class="Custom" type="date" name="age" autocomplete="off" required>
