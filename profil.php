@@ -16,11 +16,11 @@ if(isset($_POST['d'])){
 
 echo $_SESSION["pseudo"];
 
-$bdd = new PDO('mysql:host=localhost;dbname=rencontres;charset=utf8', 'root');
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 
-$recupinfo = $bdd->prepare('SELECT age, espece, race FROM users WHERE pseudo= ?');
-$recupinfo->execute(array($_SESSION['pseudo']));
-$info = $recupinfo->fetch();
+$recupinfo = $bdd->prepare('SELECT * FROM users WHERE id= ?');
+$recupinfo->execute(array($_GET['id']));
+$user = $recupinfo->fetch();
 
 if(!$_SESSION['pseudo']){
     header('Location: login.php');
@@ -102,8 +102,9 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
           </div>
         </div>
         <form method="POST" action="" id="logout-form" style="display: inline;">
-          <input type="hidden" name="d" value="logout">
-          <i class='bx bx-log-out' id="log_out" style="cursor: pointer;"></i>
+                <input type="hidden" name="d" value="logout">
+                <i class='bx bx-log-out' id="log_out" style="cursor: pointer;"></i>
+        </form>
         </form>
       </li>
     </ul>
@@ -115,13 +116,13 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
         <img src="logo.png" class="profileImg1">
       </div>
       <div class="Nom">
-        <h1 style="font-family:Ghibo; font-size:100px; color:brown;"><?= $_SESSION['pseudo']; ?></h1>
+        <h1 style="font-family:Ghibo; font-size:100px; color:brown;"><?= $user['pseudo']; ?></h1>
       </div>
       <div class="Informations">
           <div class="Détail">
-            <p>Age : <?= $info['age']; ?> </p>
-            <p>Race : <?= $info['race']; ?> </p>
-            <p>Espèce : <?= $info['espece']; ?> </p>
+            <p>Age : <?= $user['age']; ?> </p>
+            <p>Race : <?= $user['race']; ?> </p>
+            <p>Espèce : <?= $user['espece']; ?> </p>
           </div>
           <div class="Apropos">
             <h3 style="font-weight:bold; text-decoration:underline; text-align:center;">A propos de moi : </h3>
@@ -229,13 +230,16 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
 
 <script>
  let sidebar = document.querySelector(".sidebar");
+ let decaler = document.querySelector((".decaler"))
   let closeBtn = document.querySelector("#btn");
   let searchBtn = document.querySelector(".bx-search");
   closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
+    decaler.classList.toggle("open");
   });
   searchBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
+    decaler.classList.toggle("open");
   });
   
   </script>

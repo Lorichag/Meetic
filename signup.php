@@ -22,7 +22,7 @@ if(isset($_POST["envoi"])){
             $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
             $recupUser->execute(array($pseudo,$mdp));
 
-            if($recupUser->rowCount()>0){
+            if($recupUser->rowCount()>0){ 
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['mdp'] = $mdp;
                 $_SESSION['id'] = $recupUser->fetch()['id'];
@@ -34,17 +34,114 @@ if(isset($_POST["envoi"])){
 ?>
 
 
-</style>
-
 <!DOCTYPE html>
 <html>
 
 <style type="text/css">
 
+body{
+    margin: 0;
+    padding: 0;
+}
+
 @font-face {
   font-family: "Ghibo";
   src:
     url("Ghibo Talk.otf") format("opentype");
+}
+
+
+.nav {
+    position: fixed; /* Position fixe pour rester en haut à gauche */
+    top: 20px;
+    left: 20px;
+    z-index:99;
+    background-color: #fff;
+    padding: 20px;
+    transition: 0.5s;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+    border: 2px solid #666;
+}
+
+.menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 50px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.nav input:checked ~ .menu {
+    width: 500px;
+    height: 25px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+    margin: 0 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.menu li a:hover {
+    color: black;
+}
+
+.nav input {
+    width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.nav span {
+    position: absolute;
+    left: 30px;
+    width: 30px;
+    height: 4px;
+    border-radius: 50px;
+    background-color: #666;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.nav input:checked ~ span {
+    background-color: #f974a1;
+}
+
+.nav span:nth-child(2) {
+    transform: translateY(8px);
+}
+
+.nav input:checked ~ span:nth-child(2) {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.nav span:nth-child(3) {
+    transform: translateY(-8px);
+}
+
+.nav input:checked ~ span:nth-child(3) {
+    transform: translateY(0) rotate(45deg);
 }
 
 body{
@@ -59,6 +156,8 @@ body{
 }
 
 .Formulaire{
+    margin-top:50px;
+    margin-bottom:50px;
   	min-height: 100vh;
   	display: flex;
   	align-items: center;
@@ -78,7 +177,7 @@ form {
   width: 100%;
   position: relative;
   z-index: 9;
-  padding: 77px 61px 66px;
+  padding: 20px 61px 66px;
   background: #fff;
   border-radius:50px;
   border:solid black 2px;
@@ -183,6 +282,21 @@ h3 {
 </head>
 
 <body>
+
+    <div class="nav">
+        <input type="checkbox">
+        <span></span>
+        <span></span>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">A propos de nous</a></li>
+                <li><a href="#">Nos contacts</a></li>
+            </ul>
+        </div>
+    </div>
+
+
 <div class="Formulaire">
 <div class="Interieur">
 	<img class="Fox" src="image/logo.png">
@@ -192,8 +306,14 @@ h3 {
 	    		<span class="lnr lnr-user">
 	    		</span>
 	    		<input class="Custom" type="text" name="pseudo" placeholder="Pseudo"  autocomplete="off" required>
-	    	</div>
 	    		
+
+	    	</div>
+	    	<div class="Case">
+	    	<span class="lnr lnr-user">
+	    		</span>
+	    	<input class="Custom" type="text" name="mail" placeholder="Adresse-mail"  autocomplete="off" required>
+	    	</div>
 		<div class="Case">
 	    		<span class="lnr lnr-calendar-full"></span>
        			<input class="Custom" type="date" name="age" autocomplete="off" required>
