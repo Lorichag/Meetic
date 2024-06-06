@@ -15,7 +15,7 @@ if(isset($_POST["envoi"])){
             $race=htmlspecialchars($_POST['race']);
             $abo=0;
             $fin_abo='vide';
-            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
+            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo, profil) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
             $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo));
 
             $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
