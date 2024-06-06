@@ -53,9 +53,9 @@ if (isset($_POST["fric"])) {
 <h1>Paiement</h1>
 <p>Numéro de carte <span id="p1">Expiration</span><span id="p2">CVC</span></p>
 <form method="POST" action="">
-<input class="carte1" type="text" name="num-carte"  autocomplete="off"  placeholder="1234 1234 1234 1234" required>
-<input class="carte2" type="text" name="exp-carte"  autocomplete="off"  placeholder="MM/YY" required>
-<input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required>
+<input class="carte1" type="text" name="num-carte" autocomplete="off" placeholder="1234 1234 1234 1234" required maxlength="19">
+<input class="carte2" type="text" name="exp-carte"  autocomplete="off"  placeholder="MM/YY" required maxlength="5">
+<input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required maxlength="3">
 <input type="submit" value="Valider" name="fric">
 </form>
 
