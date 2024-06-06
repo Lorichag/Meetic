@@ -1,0 +1,163 @@
+.Messagerie {
+    display: flex;
+    height: 100vh;
+}
+
+.Liste {
+    width: 300px;
+    margin-left: 78px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: solid black;
+    overflow-y: auto;
+}
+
+.bouton {
+    width: 100%;
+    height: 50px;
+}
+
+.icon1 {
+    margin-left: 10px;
+}
+
+.case {
+    display: flex;
+}
+
+.ChatConteneur {
+    flex-grow: 1;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.envoyeur {
+    background-color: #e0e0e0;
+    color: #000;
+    align-self: flex-start;
+}
+
+.receveur {
+    background-color: #4CAF50;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.messages input {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.messages button {
+    padding: 8px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contain {
+    display: flex;
+    width: 100%;
+}
+
+.header {
+    padding: 20px;
+    background: red;
+}
+
+.options-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.options-container.gauche {
+    order: 1;
+}
+
+.options-container.droite {
+    order: -1;
+    margin-left: auto;
+    background-color: #ccc;
+}
+
+.options-icon {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 0 10px;
+    display: none;
+}
+
+.messages:hover .options-icon {
+    display: inline;
+}
+
+.option {
+    position: absolute;
+    top: 30px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.option p{
+    color: #000;
+}
+.option button {
+    background: white;
+    border: none;
+    cursor: pointer;
+    color: red;
+    text-align: center;
+}
+
+.option button:hover {
+    background-color: #ddd;
+}
