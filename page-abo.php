@@ -11,7 +11,7 @@ session_start();
 <link rel="stylesheet" type="text/css" href="page-abo.css">
 
 
-
+<div class="position">
 <div class="Foufou ">
 <h2>Offre Foufou</h2>
 <h1> 5.99€ </h1>
@@ -44,7 +44,7 @@ session_start();
 <BR>
 <br>
 <p>Acces au site à son plein potentiel pour rencontrer l'amseur de ton animal</p>
-
+</div>
 </div>
 </body>
 
@@ -66,8 +66,7 @@ height:97vh;
  background-color: #200802 ;
  background-size: cover;
  margin-top: 175px ;
- margin-right: 10px ;
- margin-left:400px;
+ margin-right: 750px ;
  border-radius:10px;
 }
 
@@ -108,7 +107,6 @@ float:left;
   background-size: cover;
  margin-top: 7% ;
  margin-right: 1% ;
- margin-left:800px;
   border-radius:10px;
 }
 
@@ -143,8 +141,8 @@ float:left;
  background-color: #200802 ;
   background-size: cover;
  margin-top: 8% ;
- margin-right: 1% ;
- margin-left:1200px;
+ 
+ margin-left: 750px ;
   border-radius:10px;
 }
 
@@ -168,8 +166,13 @@ transition: background-color 0.3s ease;
 }
 .Roi p{
 color:white;
-
 }
+.position {
+display:flex;
+justify-content:center;
+}
+
+
 </style>
 
 

@@ -36,7 +36,6 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
         echo "Aucun utilisateur trouvé.";
     }
 } else {
-    echo "Aucun ID trouvé.";
 }
 ?>
 
@@ -109,7 +108,6 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
   
   <div class="titre">
     <h1>Animate</h1>
-    <img src="image/logo.png">
   </div>
   <div class="contenue">
     <div class="pro">
@@ -155,21 +153,18 @@ margin-right:400px;
 
 }
 .titre h1, .titre img {
-    display: inline-block;
-    vertical-align: middle; /* Pour aligner verticalement le texte et l'image */
+    display: flex;
+    justify-content:center;
 }
 .titre h1{
-margin-left:700px;
+text-align:center;
 font-family:Ghibo;
 font-size:100px;
 }
 
-.titre img {
-width:60px;
-margin-left:10px;
+body{
+background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90%);;
 }
-
-
 @font-face {
   font-family: "Ghibo";
   src:
@@ -208,13 +203,13 @@ font-size:25px;
 .pub {
 margin-left:125px;
 width:300px;
-height:775px;
+height:80vh;
 border:solid black 2px;
 
 }
 .pub img{
 width:295px;
-height:770px;
+height:80vh;
 
 }
 .contenue {
