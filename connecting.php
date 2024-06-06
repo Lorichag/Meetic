@@ -69,7 +69,7 @@ if (isset($_GET['q']) AND !empty($_GET['q'])) {
       <li>
         
           <i class='bx bx-search' ></i>
-          <form method="GET">
+          <form method="GET" action="connecting.php?id="<?= $_SESSION['id']; ?>>
           <input type="search" name="q" placeholder="Recherche..." />
           </form>
       </li>
@@ -155,14 +155,6 @@ if (isset($_GET['q']) AND !empty($_GET['q'])) {
 
   </div>
   
-  <script>
-    function redirectMessagerie(userId) {
-      window.location.href = "profil.php?id=" + userId;
-    }
-    document.getElementById('log_out').addEventListener('click', function() {
-      document.getElementById('logout-form').submit();
-    });
-  </script>
 </body>
 </html>
 
@@ -262,6 +254,15 @@ background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90
     decaler.classList.toggle("open");
   });
   
+  </script>
+
+<script>
+    function redirectMessagerie(userId) {
+      window.location.href = "profil.php?id=" + userId;
+    }
+    document.getElementById('log_out').addEventListener('click', function() {
+      document.getElementById('logout-form').submit();
+    });
   </script>
 
 
