@@ -1,22 +1,15 @@
-
-
-<?php
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <body>
 <link rel="stylesheet" type="text/css" href="page-abo.css">
 
 
-<div class="position">
+
 <div class="Foufou ">
 <h2>Offre Foufou</h2>
 <h1> 5.99€ </h1>
 <h1>Pour 1 mois </h1>
-<a href="paiement.php?offre=foufou">Start Now</a>
+<a href="paiement.php">Start Now</a>
 <BR>
 <br>
 <p>Acces au site à son plein potentiel pour rencontrer l'amseur de ton animal</p>
@@ -28,7 +21,7 @@ session_start();
 <h2>Offre Sauvage</h2>
 <h1>15.99€</h1>
 <h1>Pour 3 mois !</h1>
-<a href="paiement.php?offre=sauvage">Start Now</a>
+<a href="paiement.php">Start Now</a>
 <BR>
 <br>
 <p>Acces au site à son plein potentiel pour rencontrer l'amseur de ton animal</p>
@@ -40,21 +33,21 @@ session_start();
 <h2>Offre Roi</h2>
 <h1>59.99€</h1>
 <h1>Pour 1 ANS !!!</h1>
-<a href="paiement.php?offre=roi">Start Now</a>
+<a href="paiement.php">Start Now</a>
 <BR>
 <br>
 <p>Acces au site à son plein potentiel pour rencontrer l'amseur de ton animal</p>
-</div>
-</div>
-</body>
 
-
+</div>
 
 <style type="text/css">
 
 body {
-background:radial-gradient(circle,rgba(34,193,195,1) 20%, rgba(253,187,45,1)90%);
+background-image: url('https://www.fond-ecran-hd.net/Public/uploads/2019-01-13/thumbs-1/1321.jpg');
 height:97vh;
+background-position: center;
+background-size: cover;
+
 }
 
 .Foufou{
@@ -66,8 +59,8 @@ height:97vh;
  background-color: #200802 ;
  background-size: cover;
  margin-top: 175px ;
- margin-right: 750px ;
- border-radius:10px;
+ margin-right: 10px ;
+ margin-left:350px;
 }
 
 .Foufou h2 {
@@ -107,7 +100,7 @@ float:left;
   background-size: cover;
  margin-top: 7% ;
  margin-right: 1% ;
-  border-radius:10px;
+ margin-left:750px;
 }
 
 .Sauvage h1 {
@@ -141,9 +134,8 @@ float:left;
  background-color: #200802 ;
   background-size: cover;
  margin-top: 8% ;
- 
- margin-left: 750px ;
-  border-radius:10px;
+ margin-right: 1% ;
+ margin-left:1150px;
 }
 
 .Roi h1 {
@@ -166,15 +158,10 @@ transition: background-color 0.3s ease;
 }
 .Roi p{
 color:white;
-}
-.position {
-display:flex;
-justify-content:center;
-}
 
-
+}
 </style>
 
 
-
+</body>
 </html>
