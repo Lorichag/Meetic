@@ -79,7 +79,7 @@ body{
 }
 
 .nav input:checked ~ .menu {
-    width: 750px;
+    width: 500px;
     height: 25;
 }
 
@@ -323,11 +323,9 @@ h3 {
         <span></span>
         <div class="menu">
             <ul>
-                <li><a href="#">Accueil</a></li>
+                <li><a href="login.php">Accueil</a></li>
                 <li><a href="#">A propos de nous</a></li>
-                <li><a href="#">Abonnements</a></li>
-                <li><a href="#">Forum</a></li>
-                <li><a href="#">Nos contacts</a></li>
+                <li><a href="contact.php">Nos contacts</a></li>
             </ul>
         </div>
     </div>
