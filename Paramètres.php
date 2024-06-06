@@ -11,7 +11,7 @@ $bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencon
 $recupinfo = $bdd->prepare('SELECT * FROM users WHERE pseudo= ?');
 $recupinfo->execute(array($_SESSION['pseudo']));
 $info = $recupinfo->fetch();
-
+$pseudo=$_SESSION['pseudo'];
 $nom_dossier = "uploads";
 
 // Créer un dossier s'il n'existe pas déjà
@@ -22,26 +22,39 @@ if (!is_dir($nom_dossier)) {
 if(isset($_POST['valider'])){
     $espece = $_POST['espece'];
     $race = $_POST['race'];
-
+    $profil=$_POST['profil'];	
    
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+   if (isset($_FILES['profil']) && $_FILES['profil']['error'] == 0) {
+        $profilFileType = strtolower(pathinfo($_FILES["profil"]["name"], PATHINFO_EXTENSION));
         // Générer un nouveau nom de fichier unique
-        $target = 'uploads/';
-        $newFileName = uniqid('image_', true) . '.'.$imageFileType;
-        $target_file = $target.$newFileName;	
-        if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
-    		$insertImage = $bdd->prepare('INSERT INTO image(pseudo,nom_image) VALUES(?, ?)');
-    		$insertImage->execute(array($_SESSION['pseudo'],$newFileName));
-    	}
-    	else {
-            echo "Désolé, une erreur est survenue lors du téléchargement de votre fichier.";
-        }
+        $target1 = 'uploads/';
+        $newProfilName = $_SESSION['pseudo'].'_profil.'.$profilFileType;
+        $target_profil = $target1.$newProfilName;
+        move_uploaded_file($_FILES["profil"]["tmp_name"], $target_profil);	
+    }
+    $verife = $bdd->prepare('SELECT * FROM image WHERE pseudo = ?');
+    $verife->execute(array($pseudo));
+    echo $verife->rowCount();
+    if($verife->rowCount() < 5){
+	    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+		$imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+		// Générer un nouveau nom de fichier unique
+		$target = 'uploads/';
+		$newFileName = uniqid('image_', true) . '.'.$imageFileType;
+		$target_file = $target.$newFileName;	
+		if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
+	    		$insertImage = $bdd->prepare('INSERT INTO image(pseudo,nom_image) VALUES(?, ?)');
+	    		$insertImage->execute(array($_SESSION['pseudo'],$newFileName));
+	    	}
+	    	else {
+		    echo "Désolé, une erreur est survenue lors du téléchargement de votre fichier.";
+		}
+	    }
     }
 
 	
-    $updateUser = $bdd->prepare('UPDATE users SET espece = ? , race = ? WHERE pseudo = ?');
-    $updateUser->execute(array($espece,$race,$_SESSION['pseudo']));
+    $updateUser = $bdd->prepare('UPDATE users SET espece = ? , race = ? , profil = ? WHERE pseudo = ?');
+    $updateUser->execute(array($espece,$race,$newProfilName,$_SESSION['pseudo']));
 }
 ?>
 
@@ -59,6 +72,7 @@ if(isset($_POST['valider'])){
         <p>Sexe: <?= $info['sexe']; ?></p>
         <p>Espece: <?= $info['espece']; ?></p>
         <p>Race: <?= $info['race']; ?></p>
+        <p>Photo de profil: <?= $info['profil']; ?></p>
         <a href="?modifier=1">Modifier</a>
     <?php 
     } 
@@ -70,7 +84,8 @@ if(isset($_POST['valider'])){
             <p>Sexe: <input disabled="disabled" name="sexe" value="<?= $info['sexe']; ?>"></p>
             <p>Espece: <input type="text" name="espece" value="<?= $info['espece']; ?>"></p>
             <p>Race: <input type="text" name="race" value="<?= $info['race']; ?>"></p>
-            <input type="file" name="image" id="fileToUpload">
+            <p>Photo de profil: <input type="file" name="profil" value="<?= $info['profil']; ?>"></p>
+            <p>Ajouter une photo: <input type="file" name="image" id="fileToUpload"></p>
             <input type="submit" name="valider" value="Enregistrer les modifications">
         </form>
     <?php 
