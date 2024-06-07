@@ -20,10 +20,11 @@ if(!$_SESSION['pseudo']){
     header('Location: login.php');
     exit();
 }
-$query = $bdd->prepare('SELECT profil FROM users WHERE id = ?');
+$query = $bdd->prepare('SELECT profil, abo FROM users WHERE id = ?');
 $query->execute(array($_SESSION['id']));
 $userData = $query->fetch();
 $photo = $userData['profil']; 
+$abo = $userData['abo'];
 
 $recupUser = $bdd->prepare('SELECT * FROM users WHERE id NOT IN 
     (SELECT id_sig FROM bloquer WHERE id_au = ?) 
@@ -87,10 +88,13 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
             </a>
         </li>
         <li>
+            <?php if($abo==1){?>
             <a href="messagerie.php?id=<?= $_SESSION['id']; ?>">
                 <i class='bx bx-chat' ></i>
                 <span class="links_name">Messages</span>
             </a>
+            <?php }
+            ?>
         </li>
         <li>
             <a href="page-abo.php?id=<?= $_SESSION['id']; ?>">
