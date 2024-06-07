@@ -2,7 +2,7 @@
 
 
 session_start();
-$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'lancericha', 'neingee8kialohB');
 if(isset($_POST["envoi"])){
     $age = date_diff(date_create($_POST['age']), date_create('now'))->y;
     $pseudo=htmlspecialchars($_POST['pseudo']);
@@ -15,19 +15,13 @@ if(isset($_POST["envoi"])){
             $race=htmlspecialchars($_POST['race']);
             $abo=0;
             $fin_abo='vide';
-            $profil='vide';
-            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo, profil) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
-            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo,$profil));
-
-            $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo = ? AND mdp = ?');
-            $recupUser->execute(array($pseudo,$mdp));
-
-            if($recupUser->rowCount()>0){ 
-                $_SESSION['pseudo'] = $pseudo;
-                $_SESSION['mdp'] = $mdp;
-                $_SESSION['id'] = $recupUser->fetch()['id'];
+            $profil='crabe.jpg';
+            $mail=htmlspecialchars($_POST['mail']);
+            $bio = 'vide';
+            $insertUser = $bdd->prepare('INSERT INTO users(pseudo, mdp, age, sexe, espece, race, abo, fin_abo, profil, mail, bio) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)');
+            $insertUser->execute(array($pseudo,$mdp,$age,$sexe,$espece,$race, $abo,$fin_abo,$profil,$mail,$bio));
+                
                 header('Location: login.php');
-            }
     }
 }
 
@@ -289,9 +283,9 @@ h3 {
         <span></span>
         <div class="menu">
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">A propos de nous</a></li>
-                <li><a href="#">Nos contacts</a></li>
+                <li><a href="login.php">Accueil</a></li>
+                <li><a href="">A propos de nous</a></li>
+                <li><a href="contact.php">Nos contacts</a></li>
             </ul>
         </div>
     </div>
