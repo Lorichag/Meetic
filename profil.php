@@ -143,10 +143,21 @@ if(isset($_GET['id']) and !empty($_GET['id'])){
     </div>
 
     <div class="pub">
-      <img src="https://nuostore.com/wp-content/uploads/2023/11/IBANEZ-AE295WK-300x775.jpg">
+        <img id="randomImage" class="t" src="" alt="Publicité">
     </div>
   </div>
+  
+<script>
+        const images = ["image/Pub.png", "image/Pub1.png", "image/Pub2.png", "image/Pub3.png", "image/Pub4.png"];
 
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            return images[randomIndex];
+        }
+        // Sélectionner l'élément img et définir son attribut src
+        document.getElementById('randomImage').src = getRandomImage();
+    </script>
+    
   <style>
  .profil {
       display: flex;
