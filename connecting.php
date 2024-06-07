@@ -148,15 +148,24 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
                 </div>
         </div>
 
-        <div class="pub">
-            <img class="t" src="https://nuostore.com/wp-content/uploads/2023/11/IBANEZ-AE295WK-300x775.jpg">
-        </div>
+       <div class="pub">
+        <img id="randomImage" class="t" src="" alt="Publicité">
+    </div>
     </div>
 </div>
 
 </body>
 </html>
+<script>
+        const images = ["image/Pub.png", "image/Pub1.png", "image/Pub2.png", "image/Pub3.png", "image/Pub4.png"];
 
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            return images[randomIndex];
+        }
+        // Sélectionner l'élément img et définir son attribut src
+        document.getElementById('randomImage').src = getRandomImage();
+    </script>
 <style>
     body{
         background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90%);;
@@ -208,7 +217,7 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
     }
 
     .Tableau img{
-        width:300px;
+        width:50%;
         border-radius:10px;
     }
 
