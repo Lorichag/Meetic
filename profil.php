@@ -154,7 +154,7 @@ $abo = $userData['abo'];
       <div class="Nom">
         <h1 style="font-family:Ghibo; font-size:100px; color:brown;"><?= $user['pseudo']; ?></h1>
         <?php if($_SESSION['id']==$_GET['id']){?>
-          <a href="prametretest.php?<?=$_SESSION['id']?>">Modifier</a>
+          <a href="prametretest.php?<?=$_SESSION['id']?>" id="modo">Modifier</a>
         <?php }else{?>
           <button class="report-btn" data-profil-id="<?= $user['id']; ?>">Signaler</button>
           <button class="block-btn" data-user-id="<?= $user['id']; ?>">Bloquer</button>
@@ -189,6 +189,13 @@ $abo = $userData['abo'];
   </div>
 
   <style>
+#modo {
+  display:flex;
+  justify-content:center;
+  text-decoration:none;
+  color:black;
+  border: solid black 2px;
+}
  .profil {
       display: flex;
       flex-direction: column;
