@@ -31,6 +31,16 @@ if (isset($_POST['supprimer'])) {
     header('Location: admin.php');
 }
 
+$recupUser = $bdd->query('SELECT * FROM users ORDER BY id DESC');
+if (isset($_GET['q']) AND !empty($_GET['q'])) {
+   $q = htmlspecialchars($_GET['q']);
+   $recupUser = $bdd->prepare('SELECT * FROM users WHERE pseudo LIKE ? ORDER BY id DESC');
+   $recupUser->execute(array("%".$q."%"));
+} else {
+   $recupUser = $bdd->query('SELECT * FROM users ORDER BY id DESC');
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -49,44 +59,14 @@ if (isset($_POST['supprimer'])) {
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <li>
-        
-          <i class='bx bx-search' ></i>
-          <form method="GET" action="connecting.php?id="<?= $_SESSION['id']; ?>>
-          <input type="search" name="q" placeholder="Recherche..." />
-          </form>
-      </li>
-      <li>
-        <a href="connecting.php?id=<?= $_SESSION['id']; ?>">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Accueil</span>
-        </a>
-      </li>
-      <li>
-       <a href="profil.php?id=<?= $_SESSION['id']; ?>">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">Profile</span>
-       </a>
-     </li>
-     <li>
-       <a href="messagerie.php?id=<?= $_SESSION['id']; ?>">
-         <i class='bx bx-chat' ></i>
-         <span class="links_name">Messages</span>
-       </a>
-     </li>
-     <li>
-     <li>
-        <a href="page-abo.php?id=<?= $_SESSION['id']; ?>">
-          <i class='bx bxl-paypal'></i>
-          <span class="links_name">Abonnement</span>
-        </a>
-      </li>
+
     <li>
-       <a href="Paramètres.php?id=<?= $_SESSION['id']; ?>">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Paramètres</span>
-       </a>
-     </li>
+            <a href="admin.php?id=<?= $_SESSION['id']; ?>">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Accueil</span>
+            </a>
+        </li>
+      
      <li class="profile">
          <div class="profile-details">
            <img src="profile.jpg">
@@ -103,6 +83,19 @@ if (isset($_POST['supprimer'])) {
   </div>
 
   <div class="decaler">
+        <div class="titre">
+            <h1>Admin</h1>
+        </div>
+
+        <div class="Recherche">
+        <i class='bx bx-search' id="recherche"></i>
+            <form method="GET" action="admin.php?id=<?= $_SESSION['id']; ?>">
+                <input class="RechercheBar" type="search" name="q" placeholder="Recherche..." />
+            </form>
+
+            <button class="bouton" style="margin-left:10px;" onclick="window.location.href='demande.php'"> Demandes</button>
+        </div>
+
 
     <div class="Tableau">
     <table class="rwd-table">
@@ -118,7 +111,6 @@ if (isset($_POST['supprimer'])) {
             <th>Actions</th>
         </tr>
         <?php
-        $recupUser = $bdd->query('SELECT * FROM users');
         while ($user = $recupUser->fetch()) {
             if (isset($_GET['modifier']) && $_GET['modifier'] == $user['id']) {
                 ?>
@@ -150,11 +142,12 @@ if (isset($_POST['supprimer'])) {
                     <td><?= $user['abo'] ?></td>
                     <td><?= $user['fin_abo'] ?></td>
                     <td>
-                        <form method="POST" action="admin.php">
+                        <form method="POST" action="admin.php" class="formtest">
                             <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                            <button type="button" onclick="window.location.href='?modifier=<?= $user['id'] ?>'">Modifier</button>
-                            <button type="button" onclick="window.location.href='messagerie.php?id=<?= $user['id'] ?>'">Messagerie</button>
-                            <input type="submit" name="supprimer" value="Supprimer">
+                            <button type="button" class="bouton" onclick="window.location.href='?modifier=<?= $user['id'] ?>'">Modifier</button>
+                            <button type="button" class="bouton" onclick="window.location.href='profilAdmin.php?id=<?= $user['id'] ?>'">Profil</button>
+                            <button type="button" class="bouton" onclick="window.location.href='messagerie.php?id=<?= $user['id'] ?>'">Messagerie</button>
+                            <input type="submit" class="bouton" name="supprimer" value="Supprimer">
                     </form>
                     </td>
                 </tr>
@@ -167,7 +160,6 @@ if (isset($_POST['supprimer'])) {
     </div>
 
 
-
 </div>
 
 </body>
@@ -177,6 +169,12 @@ if (isset($_POST['supprimer'])) {
 
 body{
     background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90%);;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
 
 @font-face {
@@ -188,6 +186,11 @@ body{
 .Tableau{
     margin-left:78px;
     display:flex;
+    overflow-y:auto;
+    overflow-x:auto;
+    max-height:300px;
+    border-radius:10px;
+    box-sizing: border-box;
     margin-top:auto;
     justify-content:center;
 }
@@ -199,6 +202,7 @@ body{
   padding:10px;
   border-spacing:20px;
   text-align:center;
+  border-collapse: separate;
 }
 
 tr:first-child{
@@ -210,9 +214,48 @@ tr:first-child{
     margin-top:100px;
 }
 
-input{
-    
+.bouton{
+    margin-right:10px;
+    border:none;
+    border-radius:5px;
+    padding:10px;
+}
+
+.bouton:last-child{
+    margin:0;
 }
 
 
+.titre {
+    margin-bottom: 20px;
+    text-align:center;
+}
 
+.titre h1{
+    font-family:Ghibo;
+    font-size:150px;
+    color:brown;
+}
+
+.Recherche{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+#recherche{
+    border-top-left-radius:12px;
+    border-bottom-left-radius:12px;
+    font-size:25px;
+    padding:13px;
+    background: rgba(253,187,45,1);
+    color: #FFF;
+}
+
+.RechercheBar{
+    width:500px;
+    height:50px;
+    border-top-right-radius:12px;
+    border-bottom-right-radius:12px;
+}
