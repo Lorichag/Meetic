@@ -72,7 +72,7 @@ body{
 }
 
 .nav input:checked ~ .menu {
-    width: 500px;
+    width: 100px;
     height: 25px;
 }
 
@@ -203,6 +203,17 @@ h3 {
   color: #333;
 }
 
+.Case #test {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  width:20px;
+  color: #333;
+}
+
+
 .lnr {
   font-family: linearicons-free;
   font-style: normal;
@@ -284,8 +295,6 @@ h3 {
         <div class="menu">
             <ul>
                 <li><a href="login.php">Accueil</a></li>
-                <li><a href="">A propos de nous</a></li>
-                <li><a href="contact.php">Nos contacts</a></li>
             </ul>
         </div>
     </div>
@@ -304,8 +313,7 @@ h3 {
 
 	    	</div>
 	    	<div class="Case">
-	    	<span class="lnr lnr-user">
-	    		</span>
+	    	    <img src="image/courrier.png" id="test">
 	    	<input class="Custom" type="text" name="mail" placeholder="Adresse-mail"  autocomplete="off" required>
 	    	</div>
 		<div class="Case">
@@ -320,25 +328,21 @@ h3 {
         		
         		
         	<div class="Case">
-	    		<span class="lnr lnr-user">
-	    		</span>
+                <img src="image/dog.png" id="test">
         			<input class="Custom" type="text" name="espece" placeholder="Espèce"  autocomplete="off">
         	</div>
         	
         	<div class="Case">
-	    		<span class="lnr lnr-user">
-	    		</span>
+                <img src="image/race.png" id="test">
         			<input class="Custom" type="text" name="race" placeholder="Race" autocomplete="off">
         	</div>
         	
         	<div class="Case">
-	    		<span class="lnr lnr-user">
-	    		</span>
+                <img src="image/mdp.png" id="test">
         		<input class="Custom" type="password" name="password" placeholder="Mot de Passe" autocomplete="off" required>
         	</div>
         	<div class="Case">
-	    		<span class="lnr lnr-user">
-	    		</span>
+                <img src="image/mdp.png" id="test">
         		<input class="Custom" type="password" name="cpassword" placeholder="Confirmer le MDP" autocomplete="off" required>
         	</div>
         <input class="button" type="submit" name="envoi" value="Confirmer">
