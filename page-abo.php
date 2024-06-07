@@ -1,9 +1,43 @@
 
 <?php
+if (isset($_GET["offre"])) {
+    $offre = htmlspecialchars($_GET["offre"]);
+} else {
+    $message = "Aucune offre choisie pour l'instant";
+    $offre = null;
+}
+
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 session_start();
 
+if (isset($_POST["fric"])) {
+    $abo = 1;
+    $id = $_SESSION["id"];
+    switch ($_POST["offre"]) {
+        case 'foufou':
+            $fin_abo = 2678400; // offre pour 1 mois en seconde
+            break;
+        case 'sauvage':
+            $fin_abo = 8035200; // offre pour 3 mois en seconde
+            break;
+        case 'roi':
+            $fin_abo = 32140800; // offre pour 1 ans en seconde
+            break;
+        default:
+            $fin_abo = 0;
+            break;
+    }
+    if ($fin_abo > 0) {
+        $updateUser = $bdd->prepare('UPDATE users SET abo = ?, fin_abo = ? WHERE id = ?');
+        $updateUser->execute(array($abo, $fin_abo, $id));
+        $message = "Mise à jour réussie.";
+        $messageType = "success";
+    } else {
+        $message = "Offre invalide.";
+        $messageType = "error";
+    }
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 <body>
@@ -48,8 +82,7 @@ session_start();
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
-     </li>
-     <li>
+          </li>
      <li>
         <a href="page-abo.php?id=<?= $_SESSION['id']; ?>">
           <i class='bx bxl-paypal'></i>
@@ -86,7 +119,9 @@ session_start();
 <div id="modal1" class="modal1">
         <div class="modal1-content">
             <span class="close-button1">&times;</span>
+             <h1 id="paye">Paiement</h1>
             <form method="POST" action="">
+	<input type="hidden" name="offre" value="foufou">
 	<input class="carte1" type="text" name="num-carte" autocomplete="off" placeholder="1234 1234 1234 1234" required maxlength="19">
 	<input class="carte2" type="text" name="exp-carte"  autocomplete="off"  placeholder="MM/YY" required maxlength="5">
 	<input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required maxlength="3">
@@ -108,7 +143,9 @@ session_start();
 <div id="modal2" class="modal2">
         <div class="modal2-content">
             <span class="close-button2">&times;</span>
+            <h1 id="paye">Paiement</h1>
             <form method="POST" action="">
+	<input type="hidden" name="offre" value="sauvage">
 	<input class="carte1" type="text" name="num-carte" autocomplete="off" placeholder="1234 1234 1234 1234" required maxlength="19">
 	<input class="carte2" type="text" name="exp-carte"  autocomplete="off"  placeholder="MM/YY" required maxlength="5">
 	<input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required maxlength="3">
@@ -131,7 +168,9 @@ session_start();
 <div id="modal3" class="modal3">
         <div class="modal3-content">
             <span class="close-button3">&times;</span>
+            <h1 id="paye">Paiement</h1>
             <form method="POST" action="">
+	<input type="hidden" name="offre" value="roi">
 	<input class="carte1" type="text" name="num-carte" autocomplete="off" placeholder="1234 1234 1234 1234" required maxlength="19">
 	<input class="carte2" type="text" name="exp-carte"  autocomplete="off"  placeholder="MM/YY" required maxlength="5">
 	<input class="carte3" type="text" name="CVC"  autocomplete="off"  placeholder="CVC" required maxlength="3">
@@ -145,6 +184,14 @@ session_start();
 </div>
 </div>
 </div>
+
+<?php if (!empty($message)): ?>
+    <div class="message <?= isset($messageType) ? $messageType : ''; ?>">
+        <?= $message; ?>
+    </div>
+<?php endif; ?>
+
+
 </body>
 
 
@@ -157,16 +204,13 @@ height:97vh;
 }
 
 .Foufou{
-z-index:1;
  text-align:center;
- position:fixed;
- float:left;
  width:300px;
  height:400px;
  background-color: #200802 ;
  background-size: cover;
  margin-top: 175px ;
- margin-right: 750px ;
+ margin-right: 3% ;
  border-radius:10px;
 }
 
@@ -196,10 +240,7 @@ color:white;
 
 
 .Sauvage {
-z-index:1;
 text-align:center;
-position:fixed;
-float:left;
  width:300px;
  height:550px;
  background-color: #200802 ;
@@ -232,16 +273,13 @@ color:white;
 
 }
 .Roi {
-z-index:1;
 text-align:center;
-position:fixed;
-	float:left;
  width:300px;
  height:450px;
  background-color: #200802 ;
   background-size: cover;
  margin-top: 8% ;
- margin-left: 750px ;
+ margin-left: 3% ;
   border-radius:10px;
 }
 
@@ -269,7 +307,6 @@ color:white;
 .position {
 display:flex;
 justify-content:center;
-z-index:1;
 
 }
 
@@ -277,7 +314,7 @@ z-index:1;
 .modal1 {
     display: none; 
     position: fixed;
-    z-index:;
+    z-index:1;
     left:0;
     top: 0;
     width: 100%;
@@ -288,13 +325,12 @@ z-index:1;
 }
 
 .modal1-content {
-    z-index:99;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 500px; 
+    max-width: 700px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     animation: modal1open 0.4s; 
 }
@@ -322,7 +358,7 @@ z-index:1;
 .modal2 {
     display: none; 
     position: fixed;
-    z-index: 99;
+    z-index: 1;
     left:0;
     top: 0;
     width: 100%;
@@ -338,7 +374,7 @@ z-index:1;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 500px; 
+    max-width: 700px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     animation: modal1open 0.4s; 
 }
@@ -360,6 +396,8 @@ z-index:1;
     text-decoration: none;
     cursor: pointer;
 }
+
+
 .modal3 {
     display: none; 
     position: fixed;
@@ -379,7 +417,7 @@ z-index:1;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 500px; 
+    max-width: 700px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     animation: modal1open 0.4s; 
 }
@@ -401,81 +439,80 @@ z-index:1;
     text-decoration: none;
     cursor: pointer;
 }
+
+
+input[type="text"] {
+    width: calc(33% - 10px);
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    width: calc(33% - 10px);
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 2px solid #b7950b;
+    border-radius: 5px;
+    background-color: yellow;
+    color: black;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #b7950b;
+}
+#paye {
+color:black;
+}
+
+
+.message {
+            text-align: center;
+            margin-top: 75px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
 </style>
 
 
-
-</html>
-
 <script>
- let sidebar = document.querySelector(".sidebar");
- let decaler = document.querySelector((".decaler"));
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    decaler.classList.toggle("open");
-  });
-  searchBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    decaler.classList.toggle("open");
-  });
-  
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const modal1 = document.getElementById('modal1');
-    const contactLink1 = document.getElementById('contact-link1');
-    const closeButton1 = document.getElementsByClassName('close-button1')[0];
-
-    contactLink1.onclick = function() {
-        modal1.style.display = "block";
-    }
-
-    closeButton1.onclick = function() {
-        modal1.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal1) {
-            modal1.style.display = "none";
-        }
-    }
+document.getElementById('contact-link1').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('modal1').style.display = 'block';
 });
-document.addEventListener('DOMContentLoaded', (event) => {
-    const modal2 = document.getElementById('modal2');
-    const contactLink2 = document.getElementById('contact-link2');
-    const closeButton2 = document.getElementsByClassName('close-button2')[0];
 
-    contactLink2.onclick = function() {
-        modal2.style.display = "block";
-    }
-
-    closeButton2.onclick = function() {
-        modal2.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal2) {
-            modal2.style.display = "none";
-        }
-    }
+document.querySelector('.close-button1').addEventListener('click', function() {
+    document.getElementById('modal1').style.display = 'none';
 });
-document.addEventListener('DOMContentLoaded', (event) => {
-    const modal3 = document.getElementById('modal3');
-    const contactLink3 = document.getElementById('contact-link3');
-    const closeButton3 = document.getElementsByClassName('close-button3')[0];
 
-    contactLink3.onclick = function() {
-        modal3.style.display = "block";
-    }
-
-    closeButton3.onclick = function() {
-        modal3.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal3) {
-            modal3.style.display = "none";
-        }
-    }
+document.getElementById('contact-link2').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('modal2').style.display = 'block';
 });
-  </script>
+
+document.querySelector('.close-button2').addEventListener('click', function() {
+    document.getElementById('modal2').style.display = 'none';
+});
+
+document.getElementById('contact-link3').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('modal3').style.display = 'block';
+});
+
+document.querySelector('.close-button3').addEventListener('click', function() {
+    document.getElementById('modal3').style.display = 'none';
+});
+</script>
+
+
