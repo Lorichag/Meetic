@@ -10,7 +10,7 @@ Sur notre site les utilisateur peuvents s'inscrire, s'abonner, consulter les pro
 un simple visiteur n'a acces que à la page de présentation du site il peut s'inscrire ou se connecter.
 
 ### Module Utilisateur:
-![image](https://github.com/Lorichag/Meetic/assets/133487399/76253219-f1ac-404a-a31f-823a8da65dd6)
+![image](https://github.com/Lorichag/Meetic/assets/134335994/c189b920-82fe-485f-8ad0-728482eb39e7)
 
 Un utilisateur qui à crée un compte peut modifier son profil et voir celui d'autres utilisateurs.
 Il peut également s'abboner s'il le désire.
@@ -21,7 +21,7 @@ Il peut également s'abboner s'il le désire.
 Un abonné à acces en plus des utilisateurs à la messagerie où il peut discuter avec d'autres utilisateurs.
 
 ### Module admin:
-![image](https://github.com/Lorichag/Meetic/assets/133487399/f779baf4-9bb5-4178-be41-76b2ac619762)
+![image](https://github.com/Lorichag/Meetic/assets/134335994/18aec68f-3d28-47a9-abda-db3ac6837577)
 
 L'admin peut supprimer un profil voir les demandes accéder à la page de demandes, il peut également modifier les données d'un utilisateur.
 
