@@ -4,7 +4,7 @@ if (!isset($_SESSION['mdp'])) {
     header('Location: login.php');
 }
 
-$bdd = new PDO('mysql:host=localhost;dbname=espace membres;charset=utf8;', 'root', '');
+$bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 
 if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
@@ -34,13 +34,78 @@ if (isset($_POST['supprimer'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Admin</title>
-</head>
+  <html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="NavBar.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
 <body>
-    <a href="demandes.php">Demande</a>
-    <table>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="logo.png" class="icon"></img>
+        <div class="logo_name">AniMate</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        
+          <i class='bx bx-search' ></i>
+          <form method="GET" action="connecting.php?id="<?= $_SESSION['id']; ?>>
+          <input type="search" name="q" placeholder="Recherche..." />
+          </form>
+      </li>
+      <li>
+        <a href="connecting.php?id=<?= $_SESSION['id']; ?>">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Accueil</span>
+        </a>
+      </li>
+      <li>
+       <a href="profil.php?id=<?= $_SESSION['id']; ?>">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Profile</span>
+       </a>
+     </li>
+     <li>
+       <a href="messagerie.php?id=<?= $_SESSION['id']; ?>">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Messages</span>
+       </a>
+     </li>
+     <li>
+     <li>
+        <a href="page-abo.php?id=<?= $_SESSION['id']; ?>">
+          <i class='bx bxl-paypal'></i>
+          <span class="links_name">Abonnement</span>
+        </a>
+      </li>
+    <li>
+       <a href="Paramètres.php?id=<?= $_SESSION['id']; ?>">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Paramètres</span>
+       </a>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="profile.jpg">
+           <div class="name_job">
+             <div class="name"><?= $_SESSION['pseudo']; ?></div>
+           </div>
+         </div>
+         <form method="POST" action="" id="logout-form" style="display: inline;">
+                <input type="hidden" name="d" value="logout">
+                <i class='bx bx-log-out' id="log_out" style="cursor: pointer;"></i>
+          </form>
+     </li>
+    </ul>
+  </div>
+
+  <div class="decaler">
+
+    <div class="Tableau">
+    <table class="rwd-table">
         <tr>
             <th>Id</th>
             <th>Pseudo</th>
@@ -98,6 +163,56 @@ if (isset($_POST['supprimer'])) {
         }
         ?>
     </table>
+
+    </div>
+
+
+
+</div>
+
 </body>
 </html>
+
+<style>
+
+body{
+    background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 90%);;
+}
+
+@font-face {
+  font-family: "Ghibo";
+  src:
+    url("Ghibo Talk.otf") format("opentype");
+}   
+
+.Tableau{
+    margin-left:78px;
+    display:flex;
+    margin-top:auto;
+    justify-content:center;
+}
+
+.rwd-table {
+  background: #34495E;
+  color: #fff;
+  border-radius: 10px;
+  padding:10px;
+  border-spacing:20px;
+  text-align:center;
+}
+
+tr:first-child{
+    color: #dd5;
+}
+
+.rwd-table tr{
+    padding:50px;
+    margin-top:100px;
+}
+
+input{
+    
+}
+
+
 
