@@ -89,9 +89,9 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
     $recupUser->execute(array($_SESSION['id'], $_SESSION['id']));
 }
 
-$queryImages = $bdd->prepare('SELECT image_url FROM images WHERE user_id = ?');
-$queryImages->execute(array($_GET['id']));
-$images = $queryImages->fetchAll(PDO::FETCH_ASSOC);
+$queryImages = $bdd->prepare('SELECT nom_image FROM image WHERE pseudo = ?');
+$queryImages->execute(array($user['pseudo']));
+$images = $queryImages->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -183,7 +183,7 @@ $images = $queryImages->fetchAll(PDO::FETCH_ASSOC);
       <div class="Nom">
         <h1 style="font-family:Ghibo; font-size:100px; color:brown;"><?= $user['pseudo']; ?></h1>
         <?php if($_SESSION['id']==$_GET['id']){?>
-          <a href="parametre.php?id=<?=$_SESSION['id']?>" id="modo">Modifier</a>
+          <a href="Paramètres.php?id=<?=$_SESSION['id']?>" id="modo">Modifier</a>
         <?php }else{?>
           <button class="report-btn" data-profil-id="<?= $user['id']; ?>">Signaler</button>
           <button class="block-btn" data-user-id="<?= $user['id']; ?>">Bloquer</button>
@@ -206,10 +206,10 @@ $images = $queryImages->fetchAll(PDO::FETCH_ASSOC);
           </div>
       </div>
       <div class="Galerie">
-        <?php foreach ($images as $image): ?>
-            <img src="<?php echo $image['image_url']; ?>">
-        <?php endforeach; ?>
-    </div>
+    <?php foreach ($images as $image): ?>
+        <img src="uploads/<?php echo $image['nom_image']; ?>">
+    <?php endforeach; ?>
+</div>
     </div>
 
     <div class="pub">
@@ -365,6 +365,26 @@ $images = $queryImages->fetchAll(PDO::FETCH_ASSOC);
 
 .modal-content button:focus,
 .modal-content button:hover {
+    background-color: gray;
+    border: none;
+}
+
+.Nom {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Aligne les éléments horizontalement */
+    text-align: center; /* Pour aligner le texte au centre */
+}
+.Nom button{
+    margin-left: 5%;
+    color: black;
+    float: right;
+    font-weight: bold;
+    
+}
+
+.Nom button:focus,
+..Nom button:hover {
     background-color: gray;
     border: none;
 }
