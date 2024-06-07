@@ -105,11 +105,11 @@ if(isset($_POST['signaler'])) {
        </a>
      </li>
      <li class="profile">
-         <div class="profile-details">
-         <img src="image\<?=$_SESSION['id']['profil']?>" class="icon1">
-           <div class="name_job">
-             <div class="name"><?= $_SESSION['pseudo']; ?></div>
-           </div>
+            <div class="profile-details">
+                <img src="image/<?=$photo?>">
+                <div class="name_job">
+                    <div class="name"><?= $_SESSION['pseudo']; ?></div>
+                </div>
          </div>
          <form method="POST" action="" id="logout-form" style="display: inline;">
                 <input type="hidden" name="d" value="logout">

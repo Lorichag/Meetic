@@ -93,7 +93,7 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
 <body>
   <div class="sidebar">
     <div class="logo-details">
-      <img src="logo.png" class="icon"></img>
+      <img src="image/logo.png" class="icon"></img>
         <div class="logo_name">AniMate</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
@@ -135,11 +135,11 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
        </a>
      </li>
      <li class="profile">
-         <div class="profile-details">
-           <img src="profile.jpg">
-           <div class="name_job">
-             <div class="name"><?= $_SESSION['pseudo']; ?></div>
-           </div>
+            <div class="profile-details">
+                <img src="image/<?=$photo?>">
+                <div class="name_job">
+                    <div class="name"><?= $_SESSION['pseudo']; ?></div>
+                </div>
          </div>
          <form method="POST" action="" id="logout-form" style="display: inline;">
           <input type="hidden" name="d" value="logout">

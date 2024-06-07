@@ -5,6 +5,14 @@ if(!isset($_SESSION['pseudo'])){
     exit();
 }
 
+if(isset($_POST['d'])){
+    $_SESSION = array();
+    session_destroy();
+    header('Location: login.php');
+    exit();
+
+}
+
 $bdd = new PDO('mysql:host=prc-students-mysql.cy-tech.fr;port=3306;dbname=rencontres;charset=utf8', 'guesdonaxe', 'pho2eacoo0Vei2e');
 
 $recupinfo = $bdd->prepare('SELECT * FROM users WHERE pseudo= ?');
