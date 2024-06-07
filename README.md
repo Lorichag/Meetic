@@ -2,16 +2,15 @@
 
 
 ## description:
-![image](https://github.com/Lorichag/Meetic/assets/133487399/83b8cfc1-74e7-4d7d-a5ff-b44ba1941752)
-
-
 Animate est un site de rencontre pour animaux.
 Sur notre site les utilisateur peuvents s'inscrire, s'abonner, consulter les profils d'autres utilisateurs et bien d'autres choses.
 
 ### Module visiteur:
+![image](https://github.com/Lorichag/Meetic/assets/133487399/83b8cfc1-74e7-4d7d-a5ff-b44ba1941752)
 un simple visiteur n'a acces que à la page de présentation du site il peut s'inscrire ou se connecter.
 
 ### Module Utilisateur:
+
 Un utilisateur qui à crée un compte peut modifier son profil et voir celui d'autres utilisateurs.
 Il peut également s'abboner s'il le désire.
 
