@@ -6,7 +6,8 @@ Animate est un site de rencontre pour animaux.
 Sur notre site les utilisateur peuvents s'inscrire, s'abonner, consulter les profils d'autres utilisateurs et bien d'autres choses.
 
 ### Module visiteur:
-![image](https://github.com/Lorichag/Meetic/assets/133487399/83b8cfc1-74e7-4d7d-a5ff-b44ba1941752)
+![image](https://github.com/Lorichag/Meetic/assets/134335994/ccc43fb0-36da-4b0d-8920-805c0aff94a4)
+
 un simple visiteur n'a acces que à la page de présentation du site il peut s'inscrire ou se connecter.
 
 ### Module Utilisateur:
