@@ -2,7 +2,8 @@
 
 
 ## description:
-[image](https://github.com/Lorichag/Meetic/assets/133487399/413052ed-9f3b-4c67-af21-792bf4ece47a)
+file:///cergy/homee/h/hagardlori/Images/Capture%20d%E2%80%99%C3%A9cran%20de%202024-06-07%2012-37-17.png![image](https://github.com/Lorichag/Meetic/assets/133487399/83b8cfc1-74e7-4d7d-a5ff-b44ba1941752)
+
 
 Animate est un site de rencontre pour animaux.
 Sur notre site les utilisateur peuvents s'inscrire, s'abonner, consulter les profils d'autres utilisateurs et bien d'autres choses.
