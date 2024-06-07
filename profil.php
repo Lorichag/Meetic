@@ -61,8 +61,7 @@ if(isset($_POST['ecrire_user'])) {
 
 $query = $bdd->prepare('SELECT profil, abo FROM users WHERE id = ?');
 $query->execute(array($_SESSION['id']));
-$userData = $query->fetch();
-$photo = $userData['profil']; 
+$userData = $query->fetch(); 
 $abo = $userData['abo'];
 
 
@@ -89,6 +88,10 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
                                 ORDER BY id DESC');
     $recupUser->execute(array($_SESSION['id'], $_SESSION['id']));
 }
+
+$queryImages = $bdd->prepare('SELECT image_url FROM images WHERE user_id = ?');
+$queryImages->execute(array($_GET['id']));
+$images = $queryImages->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -175,12 +178,12 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
   <div class="contenue">
     <div class="profil">
       <div class="profileImg">
-        <img src="image/<?= $profil ?>" class="profileImg1">
+      <img src="image/<?= $userData['profil'] ?>" class="profileImg1">
       </div>
       <div class="Nom">
         <h1 style="font-family:Ghibo; font-size:100px; color:brown;"><?= $user['pseudo']; ?></h1>
         <?php if($_SESSION['id']==$_GET['id']){?>
-          <a href="prametretest.php?<?=$_SESSION['id']?>" id="modo">Modifier</a>
+          <a href="parametre.php?id=<?=$_SESSION['id']?>" id="modo">Modifier</a>
         <?php }else{?>
           <button class="report-btn" data-profil-id="<?= $user['id']; ?>">Signaler</button>
           <button class="block-btn" data-user-id="<?= $user['id']; ?>">Bloquer</button>
@@ -199,14 +202,14 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
           </div>
           <div class="Apropos">
             <h3 style="font-weight:bold; text-decoration:underline; text-align:center;">A propos de moi : </h3>
-            <p><?=$user['description']?></p>
+            <p><?=$user['bio']?></p>
           </div>
       </div>
       <div class="Galerie">
-        <img src="https://img.freepik.com/photos-gratuite/vue-forme-coeur-montagnes-paysage-lacustre_23-2150825103.jpg">
-        <img src=" https://static.vecteezy.com/ti/photos-gratuite/p2/26498142-une-magnifique-paysage-avec-une-etourdissant-le-coucher-du-soleil-plus-de-une-tranquille-lac-ai-generatif-photo.jpg">
-        <img src="https://images.unsplash.com/photo-1617634667039-8e4cb277ab46?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwcGF5c2FnZXxlbnwwfHwwfHx8MA%3D%3D">
-      </div>
+        <?php foreach ($images as $image): ?>
+            <img src="<?php echo $image['image_url']; ?>">
+        <?php endforeach; ?>
+    </div>
     </div>
 
     <div class="pub">
