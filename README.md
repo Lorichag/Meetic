@@ -14,7 +14,7 @@ un simple visiteur n'a acces que à la page de présentation du site il peut s'i
 ![image](https://github.com/Lorichag/Meetic/assets/134335994/c189b920-82fe-485f-8ad0-728482eb39e7)
 
 Un utilisateur qui à crée un compte peut modifier son profil et voir celui d'autres utilisateurs.
-Il peut également s'abboner s'il le désire.
+Il peut également s'abonner s'il le désire.
 
 ### Module abonné:
 ![image](https://github.com/Lorichag/Meetic/assets/133487399/e3688aa6-db77-44c7-8e3f-9a81573acac4)
